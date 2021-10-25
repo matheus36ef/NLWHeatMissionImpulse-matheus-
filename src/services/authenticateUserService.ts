@@ -3,7 +3,7 @@ import axios from "axios";
 /** Fluxo:
  * Receber o codigo(string) x
  * Recuperar o access_token no github x
- * Recuperar infos do user no github 
+ * Recuperar infos do user no github x
  * Verificar se o usuario existe no BD
  *  - Se existir -> gerar um token 
  *  - Se não existir -> criar no BD, gerar um token
@@ -14,6 +14,13 @@ import axios from "axios";
 
 interface IaccessTokenResponse { //para conseguir pegar somente oque precisa com o response
     access_token: string;
+}
+
+interface IUserResponse { //Fazendo um filtro das informações recolhidas pela busca de dados do user.
+    avatar_url: string,
+    login: string,
+    id: number,
+    name: string,
 }
 
 class AuthenticateUserService {
@@ -34,7 +41,7 @@ class AuthenticateUserService {
         });
 
         //fazer uma busca para pegar os info do username
-        const response = await axios.get("https://api.github.com/user", {
+        const response = await axios.get<IUserResponse>("https://api.github.com/user", { // Oque está entre < > dps do get, é um metodo de filtro. Chamando apenas oque está configurado.
             headers: {
                 authorization: `Bearer ${accessTokenResponse.access_token}`
             }
