@@ -1,5 +1,6 @@
 
 import axios from "axios";
+import prismaClient from "../prisma/index"
 /** Fluxo:
  * Receber o codigo(string) x
  * Recuperar o access_token no github x
@@ -46,6 +47,25 @@ class AuthenticateUserService {
                 authorization: `Bearer ${accessTokenResponse.access_token}`
             }
         });
+
+        const { login, id, avatar_url, name } = response.data;
+
+        const user = await prismaClient.user.findFirst ({ //findFirst ->  fazer uma seleção, onde o github tem o usuario id
+            where: {
+                github_id: id
+            }
+        })
+
+        if(!user /*Se usuario não existir */){
+            await prismaClient.user.create({
+                data: { //aq passamos todas as informações que quero que ele salve.
+                    github_id: id,
+                    login,
+                    avatar_url,
+                    name
+                }
+            })
+        }
 
         return response.data;
     }
