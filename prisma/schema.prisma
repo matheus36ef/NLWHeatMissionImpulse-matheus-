@@ -1,11 +1,24 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+//Conexão com o SQLite ---------------------------------------------------------
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+//-------------------------------------------------------------------------------
+
+model User { //Tabela usuário
+  id          String @id @default(uuid()) // @default(uuid())Vai fazer um alto encrementar passando o Id como sendo um "uuid()"
+  name        String
+  avatar_url  String
+  github_id   Int
+  login       String
+
+  @@map("users") //Definir qual o nome que essa tabela vai ter. -> Nesse caso, quando criar a tabela terá o nome de "users".
 }
