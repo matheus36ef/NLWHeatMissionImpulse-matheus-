@@ -7,8 +7,8 @@ import { sign } from "jsonwebtoken"; // para criar o token
  * Recuperar o access_token no github x
  * Recuperar infos do user no github x
  * Verificar se o usuario existe no BD x
- *  - Se existir -> gerar um token 
- *  - Se não existir -> criar no BD, gerar um token
+ *  - Se existir -> gerar um token x
+ *  - Se não existir -> criar no BD, gerar um token 
  * Retornar o token com as info do usuario logado
  */
 /*------------------------------------------------------------------------------------------------------------*/
