@@ -1,11 +1,12 @@
 
 import axios from "axios";
 import prismaClient from "../prisma/index"
+import { sign } from "jsonwebtoken"; // para criar o token
 /** Fluxo:
  * Receber o codigo(string) x
  * Recuperar o access_token no github x
  * Recuperar infos do user no github x
- * Verificar se o usuario existe no BD
+ * Verificar se o usuario existe no BD x
  *  - Se existir -> gerar um token 
  *  - Se não existir -> criar no BD, gerar um token
  * Retornar o token com as info do usuario logado
@@ -48,16 +49,17 @@ class AuthenticateUserService {
             }
         });
 
+        // Desestruturando o response.data -> colocando em constantes.
         const { login, id, avatar_url, name } = response.data;
-
-        const user = await prismaClient.user.findFirst ({ //findFirst ->  fazer uma seleção, onde o github tem o usuario id
+        //verificando se tem essa id no BD
+        let user = await prismaClient.user.findFirst ({ //findFirst ->  fazer uma seleção, onde o github tem o usuario id
             where: {
                 github_id: id
             }
         })
-
+        //se n (!user) tiver esse user, criar um.
         if(!user /*Se usuario não existir */){
-            await prismaClient.user.create({
+           user = await prismaClient.user.create({
                 data: { //aq passamos todas as informações que quero que ele salve.
                     github_id: id,
                     login,
@@ -67,7 +69,24 @@ class AuthenticateUserService {
             })
         }
 
-        return response.data;
+        //criando token
+        const token = sign({
+        /*
+         * primeiro parametro que ele via esperar receber é um penLoad ->Que é tudo que eu quero que meu usuario que esta fazendo a requisição tenha acesso. Geralmente passa as info do usuario
+        */
+            user: {
+                name: user.name,
+                avatar_ur: user.avatar_url,
+                id: user.id
+            }},
+            process.env.JWT_SECRET,
+            { //como terceito parametro geralmente coloca o id do user
+                subject: user.id,
+                expiresIn: "1d"
+            }
+        );
+
+        return {token, user};
     }
 }
 
