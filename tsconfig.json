@@ -9,5 +9,6 @@
 
     "strict": false,                                      /* Enable all strict type-checking options. */
     
+    "typeRoots": ["./src/@types", "node_modules/@types"]
   }
 }

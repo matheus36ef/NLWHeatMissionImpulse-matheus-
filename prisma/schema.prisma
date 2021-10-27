@@ -21,4 +21,19 @@ model User { //Tabela usuário
   login       String
 
   @@map("users") //Definir qual o nome que essa tabela vai ter. -> Nesse caso, quando criar a tabela terá o nome de "users".
+  
+  //Relação entre as duas tabelas. (User com Message)
+  messages Message[]
+}
+
+model Message { //Tabela da menssagem
+  id          String @id @default(uuid())
+  text        String
+  created_at  DateTime @default(now()) //@default(now()) Faz pegar a data do sistema.
+  user_id     String
+
+  //Relação entre as duas tabelas
+  user User @relation(fields: [user_id], references: [id])
+  @@map("messages")
+
 }
