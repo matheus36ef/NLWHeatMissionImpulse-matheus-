@@ -18,10 +18,11 @@ const io = new Server(serveHttp, {
     }
 });
 
-io.on("connection", socket => {//Permite que eu emita, como também possa ficar ouvindo eventos. 1º oque quero ouvir, ele vai receber o  socket com algumas informações.
+io.on("connection", socket => {//Permite que eu emita, como também possa ficar ouvindo eventos. 1º oque quero ouvir(Palavras), ele vai receber o  socket com algumas informações.
 
     console.log(`Usuario conectado no socket${socket.id}`);
 }); 
+
 
 //------------------------------------------------------------------------
 //Login com autenticação pelo Github
@@ -41,6 +42,5 @@ app.get("/signin/callback", (request, response) => {
 
 
 //Servidor ---------------------------------------------------------------
-app.listen(4000, () => {console.log(`Server is run on PORT 4000--`);
-});
+export {serveHttp, io};
 //------------------------------------------------------------------------
