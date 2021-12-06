@@ -7,6 +7,7 @@ import { ProfileUserController } from "./controllers/ProfileUserContoller";
 
 const router = Router();
 
+
 router.post("/authenticate", new authenticateUserController().handle);
 
 router.post("/messages", ensureAuthenticate, new createdMessageController().handle);
