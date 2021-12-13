@@ -1,5 +1,5 @@
 import "dotenv/config";
-import express from "express";
+import express, { application, request } from "express";
 import http from "http";
 import { Server } from "socket.io";
 import { router } from "./routes";
@@ -26,6 +26,10 @@ io.on("connection", socket => {//Permite que eu emita, como também possa ficar 
 
 //------------------------------------------------------------------------
 //Login com autenticação pelo Github
+app.get('/teste', (request, response) => {
+    console.log(process.env.GUITHUB_CLIENT_ID); //
+})
+
 app.get("/github", (request, response) => {
     response.redirect(`https://github.com/login/oauth/authorize?client_id=${process.env.GUITHUB_CLIENT_ID}`);
 });
