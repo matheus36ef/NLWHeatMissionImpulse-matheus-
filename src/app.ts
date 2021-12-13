@@ -8,8 +8,8 @@ import cors from "cors"
 const app = express();
 
 app.use(express.json()); //Habilitando o json dentro do app.
-app.use(router);         //Habilitando o router dentro do app.
 app.use(cors());         //Habilitando o cors dentro do app.
+app.use(router);         //Habilitando o router dentro do app.
 
 const serveHttp = http.createServer(app);
 const io = new Server(serveHttp, {

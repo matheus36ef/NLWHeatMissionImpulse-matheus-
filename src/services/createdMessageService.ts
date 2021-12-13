@@ -23,7 +23,7 @@ class CreatedMessageService {
                 avatar_url: message.user.avatar_url,
             }
         }
-        io.emit("new_messege", infoWS) //Vou emitir um evento sempre que algum usuario enviar uma msg. 1º nome do evento, oque quero ter dentro desse evento
+        io.emit("new_message", infoWS) //Vou emitir um evento sempre que algum usuario enviar uma msg. 1º nome do evento, oque quero ter dentro desse evento
         return message;        
     };
 }
