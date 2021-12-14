@@ -47,18 +47,19 @@ As mensagens são salvas em banco de dados utilizando o prisma e SQLite.
 <h3> Mobile </h3>
 - Aplicação para mobile ainda não finalizada.
 
-<h3> Dados do desenvolvimento do Front-end </h3>
-Essa é a parte Front-end do projeto.
-O servidor a parte está sendo rodado na Vercek.
+<h3> Dados do desenvolvimento do Back-end </h3>
 
-- Utilizando o vite como construtor do React.
-- Utilizando o (CSS Mocules) e (SCSS)
-- Utilizando método de contextos no React
-- Utilizando Socket.io no front-end e no back-end.
+Essa é a parte do pack-end:
+ Utilizando:
+ - Node.js
+ - Prisma
+ - SQLite
+ - Socket.io
+ - Cors
 
-Existem as partes (Back-end e mobile).
+Existem as partes (Front, back e mobile).
 links:
 
-Front - end: https://bityli.com/ViErLXX
-Back - end : https://tinyurl.com/2p9x4524
-mobile:      https://tinyurl.com/yckrw82r
+Front-end: https://bityli.com/ViErLXX
+Back-end : https://tinyurl.com/2p9x4524
+Mobile:      https://tinyurl.com/yckrw82r
