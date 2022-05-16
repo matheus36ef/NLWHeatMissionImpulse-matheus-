@@ -60,6 +60,6 @@ Essa é a parte do pack-end:
 Existem as partes (Front, back e mobile).
 links:
 
-Front-end: https://bityli.com/ViErLXX
-Back-end : https://tinyurl.com/2p9x4524
-Mobile:      https://tinyurl.com/yckrw82r
+Front-end: https://bityli.com/ViErLXX <br>
+Back-end : https://tinyurl.com/2p9x4524 <br>
+Mobile:      https://tinyurl.com/yckrw82r <br>
